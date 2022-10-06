@@ -1,5 +1,10 @@
 # HADeno (WIP)
 
+```bash
+# Check for available cli commands
+deno run src/adapters/primary/cli.ts --help
+```
+
 Hexagonal Architecture with Deno
 
 In Hexagonal Architecture, the applicaiton is split up into multiple layers in
