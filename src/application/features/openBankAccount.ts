@@ -1,14 +1,15 @@
 import BankAccount from "../domain/bankAccount.ts";
 import BankAccountRepository from "../ports/bankAccountRepository.ts";
 
-interface OpenBankAccountDTO {
+export interface OpenBankAccountDTO {
   name: string;
   telephone: string;
 }
 
 class OpenBankAccount {
-  #bankAccountRepository: BankAccountRepository;
-  constructor(bankAccountRepository: BankAccountRepository) {
+  #bankAccountRepository: Pick<BankAccountRepository, "insert">;
+
+  constructor(bankAccountRepository: Pick<BankAccountRepository, "insert">) {
     this.#bankAccountRepository = bankAccountRepository;
   }
 
