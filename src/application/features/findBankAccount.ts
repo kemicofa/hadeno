@@ -1,19 +1,21 @@
 import BankAccount from "../domain/bankAccount.ts";
 import BankAccountRepository from "../ports/bankAccountRepository.ts";
 
-class FindBankAccount {
-  #bankAccountRepository: Pick<BankAccountRepository, "get">;
+type FindBankAccountRepository =  Pick<BankAccountRepository, "getBankAccount">
 
-  constructor(bankAccountRepository: Pick<BankAccountRepository, "get">) {
+class FindBankAccount {
+  #bankAccountRepository: FindBankAccountRepository;
+
+  constructor(bankAccountRepository: FindBankAccountRepository) {
     this.#bankAccountRepository = bankAccountRepository;
   }
 
   async find(telephone: string) {
-    const bankAccountDTO = await this.#bankAccountRepository.get(telephone);
+    const bankAccountDTO = await this.#bankAccountRepository.getBankAccount(telephone);
     if (!bankAccountDTO) {
       throw new Error("Could not find bank account");
     }
-    return new BankAccount(bankAccountDTO.name, bankAccountDTO.telephone);
+    return new BankAccount(bankAccountDTO.bankAccountId, bankAccountDTO.name, bankAccountDTO.telephone);
   }
 }
 

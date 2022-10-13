@@ -15,7 +15,7 @@ import BankAccount from "../domain/bankAccount.ts";
 
 Deno.test("should be able to initiate a find bank account instance", () => {
   assertInstanceOf(
-    new FindBankAccount({ get: () => Promise.resolve(undefined) }),
+    new FindBankAccount({ getBankAccount: () => Promise.resolve(undefined) }),
     FindBankAccount,
   );
 });
@@ -25,13 +25,14 @@ Deno.test("should be able to find a bank account", async () => {
     createAt: new Date(),
     name: "kevin",
     telephone: "+3600000000",
+    bankAccountId: crypto.randomUUID()
   };
-  const repositoryGetStub = stub<BankAccountRepository, "get">(
+  const repositoryGetStub = stub<BankAccountRepository, "getBankAccount">(
     new InMemoryAdapter(),
-    "get",
+    "getBankAccount",
     () => Promise.resolve(bankAccountDTO),
   );
-  const findBankAccount = new FindBankAccount({ get: repositoryGetStub });
+  const findBankAccount = new FindBankAccount({ getBankAccount: repositoryGetStub });
   const bankAccount = await findBankAccount.find("+3600000000");
   assertInstanceOf(bankAccount, BankAccount);
   assertSpyCallAsync(repositoryGetStub, 0, {

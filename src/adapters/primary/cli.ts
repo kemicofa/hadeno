@@ -1,8 +1,8 @@
 import OpenBankAccount from "../../application/features/openBankAccount.ts";
-import InMemoryAdapter from "../secondary/inMemoryAdapter.ts";
 import BankAccountRepository from "../../application/ports/bankAccountRepository.ts";
 import { Command } from "../../deps.ts";
 import FindBankAccount from "../../application/features/findBankAccount.ts";
+import SQLiteAdapter from "../secondary/sqliteAdapter.ts";
 interface CliParams {
   openBankAccount?: {
     name: string;
@@ -35,7 +35,7 @@ async (
   }
 };
 
-const cli = createCli(new InMemoryAdapter());
+const cli = createCli(new SQLiteAdapter());
 
 await new Command()
   .name("HADeno")

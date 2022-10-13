@@ -5,7 +5,7 @@ import BankAccountRepository, {
 const myObjects: string[] = [];
 
 class InMemoryAdapter implements BankAccountRepository {
-  get(telephone: string): Promise<BankAccountDTO | undefined> {
+  getBankAccount(telephone: string): Promise<BankAccountDTO | undefined> {
     return Promise.resolve(
       myObjects.find((input) => JSON.parse(input).telephone === telephone) as
         | BankAccountDTO
@@ -13,8 +13,8 @@ class InMemoryAdapter implements BankAccountRepository {
     );
   }
 
-  insert(obj: { name: string; telephone: string }) {
-    myObjects.push(JSON.stringify({ obj }));
+  insertBankAccount(bankAccountDTO: BankAccountDTO) {
+    myObjects.push(JSON.stringify({ bankAccountDTO }));
     return Promise.resolve();
   }
 }

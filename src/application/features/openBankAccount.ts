@@ -6,18 +6,22 @@ export interface OpenBankAccountDTO {
   telephone: string;
 }
 
-class OpenBankAccount {
-  #bankAccountRepository: Pick<BankAccountRepository, "insert">;
+type InsertBankAccountRepository =  Pick<BankAccountRepository, "insertBankAccount">;
 
-  constructor(bankAccountRepository: Pick<BankAccountRepository, "insert">) {
+class OpenBankAccount {
+  #bankAccountRepository: InsertBankAccountRepository;
+
+  constructor(bankAccountRepository: InsertBankAccountRepository) {
     this.#bankAccountRepository = bankAccountRepository;
   }
 
   async open(dto: OpenBankAccountDTO) {
-    const account = new BankAccount(dto.name, dto.telephone);
-    await this.#bankAccountRepository.insert({
+    const account = new BankAccount(crypto.randomUUID(), dto.name, dto.telephone);
+    await this.#bankAccountRepository.insertBankAccount({
+      bankAccountId: account.bankAccountId,
       name: account.name,
       telephone: account.telephone,
+      createAt: account.createdAt
     });
     return account;
   }
