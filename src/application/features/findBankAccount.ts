@@ -1,7 +1,7 @@
 import BankAccount from "../domain/bankAccount.ts";
 import BankAccountRepository from "../ports/bankAccountRepository.ts";
 
-type FindBankAccountRepository =  Pick<BankAccountRepository, "getBankAccount">
+type FindBankAccountRepository = Pick<BankAccountRepository, "getBankAccount">;
 
 class FindBankAccount {
   #bankAccountRepository: FindBankAccountRepository;
@@ -11,11 +11,17 @@ class FindBankAccount {
   }
 
   async find(telephone: string) {
-    const bankAccountDTO = await this.#bankAccountRepository.getBankAccount(telephone);
+    const bankAccountDTO = await this.#bankAccountRepository.getBankAccount(
+      telephone,
+    );
     if (!bankAccountDTO) {
       throw new Error("Could not find bank account");
     }
-    return new BankAccount(bankAccountDTO.bankAccountId, bankAccountDTO.name, bankAccountDTO.telephone);
+    return new BankAccount(
+      bankAccountDTO.bankAccountId,
+      bankAccountDTO.name,
+      bankAccountDTO.telephone,
+    );
   }
 }
 

@@ -1,4 +1,7 @@
-import { assertInstanceOf, assertThrows } from "https://deno.land/std@0.158.0/testing/asserts.ts";
+import {
+  assertInstanceOf,
+  assertThrows,
+} from "https://deno.land/std@0.158.0/testing/asserts.ts";
 import BankAccount from "./bankAccount.ts";
 
 Deno.test("should not be able to create a bank account if the number is too short", () => {
@@ -18,6 +21,10 @@ Deno.test("should not be able to create a bank account if the bank account id is
 });
 
 Deno.test("should be able to create a bank account", () => {
-  const bankAccount = new BankAccount(crypto.randomUUID(), "kevin", "+33600000000");
+  const bankAccount = new BankAccount(
+    crypto.randomUUID(),
+    "kevin",
+    "+33600000000",
+  );
   assertInstanceOf(bankAccount, BankAccount);
-})
+});

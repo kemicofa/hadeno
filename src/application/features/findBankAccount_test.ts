@@ -25,14 +25,16 @@ Deno.test("should be able to find a bank account", async () => {
     createAt: new Date(),
     name: "kevin",
     telephone: "+3600000000",
-    bankAccountId: crypto.randomUUID()
+    bankAccountId: crypto.randomUUID(),
   };
   const repositoryGetStub = stub<BankAccountRepository, "getBankAccount">(
     new InMemoryAdapter(),
     "getBankAccount",
     () => Promise.resolve(bankAccountDTO),
   );
-  const findBankAccount = new FindBankAccount({ getBankAccount: repositoryGetStub });
+  const findBankAccount = new FindBankAccount({
+    getBankAccount: repositoryGetStub,
+  });
   const bankAccount = await findBankAccount.find("+3600000000");
   assertInstanceOf(bankAccount, BankAccount);
   assertSpyCallAsync(repositoryGetStub, 0, {
