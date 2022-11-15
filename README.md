@@ -2,7 +2,7 @@
 
 ```bash
 # Check for available cli commands
-deno run --allow-env --allow-read --allow-write src/adapters/primary/cli.ts --help
+deno run --allow-env --allow-read --allow-write src/infrastructure/adapters/primary/cli.ts --help
 ```
 
 Hexagonal Architecture with Deno

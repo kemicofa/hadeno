@@ -15,14 +15,11 @@ type CreateProviderBankApi = Pick<ProviderBankApi, "createBankAccount">;
 
 class OpenBankAccount {
   #bankAccountRepository: InsertBankAccountRepository;
-  #providerBankApi: CreateProviderBankApi;
 
   constructor(
     bankAccountRepository: InsertBankAccountRepository,
-    providerBankApi: CreateProviderBankApi,
   ) {
     this.#bankAccountRepository = bankAccountRepository;
-    this.#providerBankApi = providerBankApi;
   }
 
   async open(dto: OpenBankAccountDTO) {

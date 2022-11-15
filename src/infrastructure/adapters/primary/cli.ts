@@ -1,8 +1,5 @@
-import { Command } from "../../deps.ts";
-import {
-  findBankAccount,
-  openBankAccount,
-} from "../../infrastructure/container.ts";
+import { Command } from "../../../deps.ts";
+import { findBankAccount, openBankAccount } from '../../container.ts'
 
 await new Command()
   .name("HADeno")

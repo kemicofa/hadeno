@@ -10,8 +10,8 @@ import {
   assertSpyCallAsync,
   stub,
 } from "https://deno.land/std@0.158.0/testing/mock.ts";
-import InMemoryAdapter from "../../adapters/secondary/inMemoryAdapter.ts";
 import BankAccount from "../domain/bankAccount.ts";
+import InMemoryAdapter from "../../infrastructure/adapters/secondary/inMemoryAdapter.ts";
 
 Deno.test("should be able to initiate a find bank account instance", () => {
   assertInstanceOf(

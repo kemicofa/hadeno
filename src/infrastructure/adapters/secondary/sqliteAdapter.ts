@@ -1,7 +1,5 @@
-import BankAccountRepository, {
-  BankAccountDTO,
-} from "../../application/ports/bankAccountRepository.ts";
-import { DB } from "../../deps.ts";
+import BankAccountRepository, { BankAccountDTO } from "../../../application/ports/bankAccountRepository.ts";
+import { DB } from "../../../deps.ts";
 
 interface BankAccountRow {
   bankAccountId: string;

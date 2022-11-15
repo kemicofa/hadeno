@@ -1,6 +1,5 @@
-import BankAccountRepository, {
-  BankAccountDTO,
-} from "../../application/ports/bankAccountRepository.ts";
+import BankAccountRepository,{ BankAccountDTO } from "../../../application/ports/bankAccountRepository.ts";
+
 
 const myObjects: string[] = [];
 

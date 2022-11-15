@@ -1,13 +1,13 @@
 Deno.test("should be able to open a bank account", async () => {
   const process = Deno.run({
     cmd: [
-      "DENO_ENV=test",
+      "DENO_ENV=test", // TODO(kemi): currently doesn't work because env is causing the command to fail
       "deno",
       "run",
       "--allow-read",
       "--allow-write",
       "--allow-env",
-      "./src/adapters/primary/cli.ts",
+      "src/infrastructure/adapters/primary/cli.ts",
       "open-bank-account",
       "kevin",
       "+3660000000000",

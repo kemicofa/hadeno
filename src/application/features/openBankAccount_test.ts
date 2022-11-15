@@ -8,9 +8,6 @@ Deno.test("should be able to create a bank account", async () => {
   // TODO: replace with global mock
   const openBankAccount = new OpenBankAccount({
     insertBankAccount: () => Promise.resolve(),
-  }, {
-    createBankAccount: () =>
-      Promise.resolve({ providerBankAccountId: "provider-bank-account-id" }),
   });
 
   const bankAccount = await openBankAccount.open({
